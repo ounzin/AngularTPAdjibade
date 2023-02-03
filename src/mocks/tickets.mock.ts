@@ -1,18 +1,20 @@
-import { Ticket } from '../models/ticket';
+import { Ticket } from "../models/ticket";
 
 const dateToday: Date = new Date();
 
 export const TICKETS_MOCKED: Ticket[] = [
   {
-    title: 'SI4 in Madrid',
-    description: '',
+    title: "Manzor Paris U Arena",
+    description: "",
     date: dateToday,
-    author: 'Paul'
+    student: "Paul",
+    major: "Informatique",
   },
   {
-    title: 'SI5 in Paris',
-    description: 'Description du voyage',
+    title: "Damso place de l'amazone",
+    description: "Description du voyage",
     date: dateToday,
-    author: 'Anakin'
+    student: "Anakin",
+    major: "Informatique",
   },
 ];
