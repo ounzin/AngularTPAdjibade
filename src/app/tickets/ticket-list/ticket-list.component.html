@@ -1,7 +1,31 @@
 <div class="ticket-list">
+  <br />
+  <button *ngIf="displayTicketArchived" (click)="hideArchivedTickets()">
+    Hide archived ticket
+  </button>
+  <button *ngIf="!displayTicketArchived" (click)="showArchivedTickets()">
+    Show archived ticket
+  </button>
   <div class="ticket" *ngFor="let ticket of ticketList">
-      <!--Inputs & Output allow communication between parent & child components.-->
-      <!--More information: https://angular.io/guide/component-interaction-->
-      <app-ticket [ticket]="ticket" (ticketHasBeenSelected)="ticketHasBeenSelected($event)"></app-ticket>
+    <!--Inputs & Output allow communication between parent & child components.-->
+    <!--More information: https://angular.io/guide/component-interaction-->
+
+    <app-ticket
+      [ticket]="ticket"
+      (ticketHasBeenSelected)="ticketHasBeenSelected($event)"
+      (ticketHasBeenDeleted)="deleteTicket(ticket)"
+      (ticketHasBeenArchived)="archiveTicket(ticket)"
+      *ngIf="displayTicketArchived && ticket.archived"
+    ></app-ticket>
+
+    <app-ticket
+      [ticket]="ticket"
+      (ticketHasBeenSelected)="ticketHasBeenSelected($event)"
+      (ticketHasBeenDeleted)="deleteTicket(ticket)"
+      (ticketHasBeenArchived)="archiveTicket(ticket)"
+      *ngIf="!displayTicketArchived && !ticket.archived"
+    ></app-ticket>
+
+    <!-- Mais est-ce necessaire d'avoir un doublon ??-->
   </div>
 </div>

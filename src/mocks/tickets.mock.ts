@@ -9,12 +9,22 @@ export const TICKETS_MOCKED: Ticket[] = [
     date: dateToday,
     student: "Paul",
     major: "Informatique",
+    archived: false,
   },
   {
     title: "Damso place de l'amazone",
     description: "Description du voyage",
     date: dateToday,
     student: "Anakin",
+    major: "Electronique",
+    archived: false,
+  },
+  {
+    title: "Nekfeu Canopée",
+    description: "Description du voyage",
+    date: dateToday,
+    student: "Anakin",
     major: "Informatique",
+    archived: true,
   },
 ];

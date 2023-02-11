@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Ticket } from '../../models/ticket';
-import { TICKETS_MOCKED } from '../../mocks/tickets.mock';
-import { BehaviorSubject } from 'rxjs/index';
+import { Injectable } from "@angular/core";
+import { Ticket } from "../../models/ticket";
+import { TICKETS_MOCKED } from "../../mocks/tickets.mock";
+import { BehaviorSubject } from "rxjs/index";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class TicketService {
   /**
@@ -18,13 +18,37 @@ export class TicketService {
    * Observable which contains the list of the tickets.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
-  public tickets$: BehaviorSubject<Ticket[]> = new BehaviorSubject(this.ticketList);
+  public tickets$: BehaviorSubject<Ticket[]> = new BehaviorSubject(
+    this.ticketList
+  );
 
-  constructor() {
-  }
+  constructor() {}
 
   addTicket(ticket: Ticket) {
-    // You need here to update the list of ticket and then update our observable (Subject) with the new list
-    // More info: https://angular.io/tutorial/toh-pt6#the-searchterms-rxjs-subject
+    this.ticketList.push(ticket);
+    this.tickets$.next(this.ticketList);
+  }
+
+  deleteTicket(ticket: Ticket) {
+    this.ticketList = this.ticketList.filter((t) => t !== ticket);
+    this.tickets$.next(this.ticketList);
+  }
+
+  archiveTicket(ticket: Ticket) {
+    this.ticketList.forEach((t) => {
+      if (t === ticket) {
+        t.archived = true;
+      }
+    });
+    this.tickets$.next(this.ticketList);
+    console.log(this.ticketList);
+  }
+
+  displayOrHideArchivedTickets(displayArchives) {
+    if (displayArchives) {
+      this.tickets$.next(this.ticketList);
+    } else {
+      this.tickets$.next(this.ticketList.filter((t) => t.archived === false));
+    }
   }
 }
