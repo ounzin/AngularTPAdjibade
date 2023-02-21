@@ -20,6 +20,15 @@
     />
   </label>
   <br />
+  <label for="student">
+    Student <br />
+    <select class="input-custom" id="student" [formControlName]="'student'">
+      <option *ngFor="let student of students" [value]="student.id">
+        {{ student.id }} - {{ student.nom }} {{ student.prenom }}
+      </option>
+    </select>
+  </label>
+  <br />
   <label for="major">
     Major <br />
     <select class="input-custom" id="major" [formControlName]="'major'">

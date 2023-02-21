@@ -1,4 +1,5 @@
 import { Ticket } from "../models/ticket";
+import { Student } from "../models/student";
 
 const dateToday: Date = new Date();
 
@@ -7,7 +8,7 @@ export const TICKETS_MOCKED: Ticket[] = [
     title: "Manzor Paris U Arena",
     description: "",
     date: dateToday,
-    student: "Paul",
+    student: { nom: "Paul", prenom: "Dupont" } as Student,
     major: "Informatique",
     archived: false,
   },
@@ -15,7 +16,7 @@ export const TICKETS_MOCKED: Ticket[] = [
     title: "Damso place de l'amazone",
     description: "Description du voyage",
     date: dateToday,
-    student: "Anakin",
+    student: { nom: "Marc", prenom: "Lozes" } as Student,
     major: "Electronique",
     archived: false,
   },
@@ -23,7 +24,7 @@ export const TICKETS_MOCKED: Ticket[] = [
     title: "Nekfeu Canopée",
     description: "Description du voyage",
     date: dateToday,
-    student: "Anakin",
+    student: { nom: "Frederic", prenom: "Maggioli" } as Student,
     major: "Informatique",
     archived: true,
   },

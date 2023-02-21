@@ -11,4 +11,9 @@ export const STUDENTS_MOCKED: Student[] = [
     nom: "Anakin",
     prenom: "Skywalker",
   },
+  {
+    id: 3,
+    nom: "Luke",
+    prenom: "Tobias",
+  },
 ];

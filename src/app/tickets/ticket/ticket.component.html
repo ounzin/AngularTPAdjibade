@@ -1,5 +1,6 @@
 <div class="card ticket" (click)="selectTicket($event)">
   <h3>Hello {{ ticket.title }}</h3>
+  <p>{{ ticket.student.nom }} {{ ticket.student.prenom }}</p>
   <i class="fas fa-calendar-alt"></i>
   {{ ticket.date | date : "shortTime" }} &nbsp;&nbsp;
   <i *ngIf="ticket.major == 'Informatique'" class="fas fa-cogs"></i>
