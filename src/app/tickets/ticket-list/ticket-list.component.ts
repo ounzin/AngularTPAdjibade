@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { TicketService } from "../../../services/ticket/ticket.service";
 import { Ticket } from "../../../models/ticket";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
+import { StudentService } from "src/services/student/student.service";
+import { Student } from "src/models/student";
 
 @Component({
   selector: "app-ticket-list",
@@ -10,12 +12,20 @@ import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 })
 export class TicketListComponent implements OnInit {
   public ticketList: Ticket[] = [];
+  public studentList: Student[] = [];
   public displayTicketArchived: boolean = true;
 
-  constructor(public ticketService: TicketService) {
+  constructor(
+    public ticketService: TicketService,
+    public studentService: StudentService
+  ) {
     this.ticketService.tickets$.subscribe(
       (tickets) => (this.ticketList = tickets)
     );
+    // this.studentService.students$.subscribe(
+    //   (students) => (this.studentList = students)
+    // );
+    this.studentService.getStudents();
   }
 
   ngOnInit() {
