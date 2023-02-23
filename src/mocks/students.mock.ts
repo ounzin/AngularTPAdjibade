@@ -17,3 +17,5 @@ export const STUDENTS_MOCKED: Student[] = [
     prenom: "Tobias",
   },
 ];
+
+export const ALREADY_USED_IDS: number[] = [];

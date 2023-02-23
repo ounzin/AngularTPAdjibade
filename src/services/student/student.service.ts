@@ -9,17 +9,20 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class StudentService {
   private studentList: Student[] = STUDENTS_MOCKED;
+  private alreadyUsedIds: number[] = [];
+
   public students$: BehaviorSubject<Student[]> = new BehaviorSubject(
     this.studentList
+  );
+  public alreadyUsedIds$: BehaviorSubject<number[]> = new BehaviorSubject(
+    this.alreadyUsedIds
   );
 
   public API_URL = "http://localhost:9428/api/students";
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-    this.getStudents();
-  }
+  ngOnInit() {}
 
   public async getStudents() {
     const stds: Student[] = [];
@@ -42,6 +45,23 @@ export class StudentService {
       }
     });
 
+    this.students$.next(this.studentList);
+  }
+
+  public buildAlreadyUsedIds() {
+    this.studentList.forEach((student) => {
+      this.alreadyUsedIds.push(student.id);
+    });
+    this.alreadyUsedIds$.next(this.alreadyUsedIds);
+  }
+
+  public addStudent(student: Student) {
+    this.studentList.push(student);
+    this.students$.next(this.studentList);
+  }
+
+  public deleteStudent(student: Student) {
+    this.studentList = this.studentList.filter((s) => s !== student);
     this.students$.next(this.studentList);
   }
 }

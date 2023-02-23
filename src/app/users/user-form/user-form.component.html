@@ -1,0 +1,24 @@
+<h3>Create a new user</h3>
+<form [formGroup]="userForm">
+  <label for="nom">
+    Nom <br />
+    <input
+      class="input-custom"
+      type="text"
+      id="nom"
+      [formControlName]="'nom'"
+    />
+  </label>
+  <br />
+  <label for="prenom">
+    Prenom <br />
+    <input
+      class="input-custom"
+      type="text"
+      id="prenom"
+      [formControlName]="'prenom'"
+    />
+  </label>
+  <br />
+  <button type="submit" class="btn-custom" (click)="addUser()">Create</button>
+</form>
